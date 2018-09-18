@@ -7,9 +7,11 @@ public class Funcionario {
     protected String funcao;
 
     //-------------------------------------------
-    //SOPBRECARGA - Mesma classe, assinaturas diferentes
+    //Construtor padrão
+    //SOPBRECARGA - Mesma classe, parâmetros diferentes
     public Funcionario() {} //Construtor - Mesmo nome da classe, pode ou não ter paramentros.
     
+    //Construtor com 3 parâmetros
     public Funcionario(String nomeComp, String cpf, String funcao) {
         this.nomeComp = nomeComp;
         this.cpf = cpf;

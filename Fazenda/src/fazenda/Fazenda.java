@@ -16,6 +16,7 @@ import silo.Trigo.SiloTrigo;
 
 
 public class Fazenda {
+    
     ArrayList<Funcionario> funcionarios;
     ArrayList<Trator> trator;
     ArrayList<Colhedeira> colhedeira;
@@ -29,6 +30,7 @@ public class Fazenda {
     public static void main(String[] args) {
         
         int resp = 0; //Variável para receber a resposta do usuário sobre o menu.
+        boolean error = false;
         //Instanciando um objeto
         Fazenda fzd = new Fazenda(); 
         fzd.funcionarios = new ArrayList<>(); 
@@ -46,6 +48,7 @@ public class Fazenda {
         
         //MENU PRINCIPAL
         do{
+            try{
             resp = Integer.parseInt(JOptionPane.showInputDialog("Escolha uma opção:\n"
                + "1 - Cadastrar Funcionário\n"
                + "2 - Exibir Funcionários\n"
@@ -54,6 +57,18 @@ public class Fazenda {
                + "5 - Silo\n"
                + "6 - Excluir\n"
                + "8 - Sair"));
+            }catch(NumberFormatException erro){
+               JOptionPane.showMessageDialog(null, "Digite apenas números!");
+               resp = Integer.parseInt(JOptionPane.showInputDialog("Escolha uma opção:\n"
+               + "1 - Cadastrar Funcionário\n"
+               + "2 - Exibir Funcionários\n"
+               + "3 - Cadastrar Maquinário | Implemento\n"
+               + "4 - Exibir Maquinário | Implemento\n"
+               + "5 - Silo\n"
+               + "6 - Excluir\n"
+               + "8 - Sair"));
+               error = true;
+            }
             
             switch(resp){
                 case 1: 
@@ -62,11 +77,20 @@ public class Fazenda {
                     
                     
                 case 3:// - - - - - - - - - CADASTRAR MAQUINÁRIO - - - - - - - -
-                    resp = Integer.parseInt(JOptionPane.showInputDialog("Tipo: \n"
+                    try{
+                        resp = Integer.parseInt(JOptionPane.showInputDialog("Tipo: \n"
                         + "1 - Trator\n"
                         + "2 - Colhedeira\n"
                         + "3 - Plantadeira\n"
                         + "4 - Voltar"));
+                    }catch(NumberFormatException erro){
+                        JOptionPane.showMessageDialog(null, "Digite apenas números!");
+                        resp = Integer.parseInt(JOptionPane.showInputDialog("Tipo: \n"
+                        + "1 - Trator\n"
+                        + "2 - Colhedeira\n"
+                        + "3 - Plantadeira\n"
+                        + "4 - Voltar"));
+                    }
                     switch(resp){
                         case 1:
                             fzd.cadastrarTrator(fzd.gerarCodigo()); //CADASTRANDO TRATOR
@@ -91,10 +115,18 @@ public class Fazenda {
                     
                     
                 case 4:// - - - - - - - - - EXIBIR MAQUINÁRIO - - - - - - - -
-                    resp = Integer.parseInt(JOptionPane.showInputDialog("Tipo: \n"
+                    try{
+                        resp = Integer.parseInt(JOptionPane.showInputDialog("Tipo: \n"
                         + "1 - Trator\n"
                         + "2 - Colhedeira\n"
                         + "3 - Plantadeira"));
+                    }catch(NumberFormatException erro){
+                        JOptionPane.showMessageDialog(null, "Digite apenas números!");
+                        resp = Integer.parseInt(JOptionPane.showInputDialog("Tipo: \n"
+                        + "1 - Trator\n"
+                        + "2 - Colhedeira\n"
+                        + "3 - Plantadeira"));
+                    }
                     switch(resp){
                         case 1:
                             fzd.exibirTrator();
@@ -110,12 +142,22 @@ public class Fazenda {
                     
                 
                 case 6:// - - - - - - - - - EXCLUIR - - - - - - - -
-                    resp = Integer.parseInt(JOptionPane.showInputDialog("Excluir: \n"
+                    try{
+                        resp = Integer.parseInt(JOptionPane.showInputDialog("Excluir: \n"
                         + "1 - Funcionário\n"
                         + "2 - Colhedeira\n"
                         + "3 - Trator\n"
                         + "4 - Plantadeira\n"
                         + "5 - Voltar"));
+                    }catch(NumberFormatException erro){
+                        JOptionPane.showMessageDialog(null, "Digite apenas números!");
+                        resp = Integer.parseInt(JOptionPane.showInputDialog("Excluir: \n"
+                        + "1 - Funcionário\n"
+                        + "2 - Colhedeira\n"
+                        + "3 - Trator\n"
+                        + "4 - Plantadeira\n"
+                        + "5 - Voltar"));
+                    }
                     switch(resp){
                         case 1:
                             fzd.excluirFuncionario();
@@ -136,18 +178,36 @@ public class Fazenda {
                     
                     
                 case 5:// - - - - - - - - - SILO - - - - - - - -
-                    resp = Integer.parseInt(JOptionPane.showInputDialog("Escolha: \n"
+                    try{
+                        resp = Integer.parseInt(JOptionPane.showInputDialog("Escolha: \n"
                         + "1 - Silo soja\n"
                         + "2 - Silo trigo\n"
                         + "3 - Silo milho\n"
                         + "4 - Voltar"));
+                    }catch(NumberFormatException erro){
+                        JOptionPane.showMessageDialog(null, "Digite apenas números!");
+                        resp = Integer.parseInt(JOptionPane.showInputDialog("Escolha: \n"
+                        + "1 - Silo soja\n"
+                        + "2 - Silo trigo\n"
+                        + "3 - Silo milho\n"
+                        + "4 - Voltar"));
+                    }
                     switch(resp){
                         case 1:
-                            resp = Integer.parseInt(JOptionPane.showInputDialog("Opções: \n"
+                            try{
+                                resp = Integer.parseInt(JOptionPane.showInputDialog("Opções: \n"
                                 + "1 - Inserir Nota \n"
                                 + "2 - Excluir Nota\n"
                                 + "3 - Relatório\n"
                                 + "4 - Cancelar"));
+                            }catch(NumberFormatException erro){
+                                JOptionPane.showMessageDialog(null, "Digite apenas números!");
+                                resp = Integer.parseInt(JOptionPane.showInputDialog("Opções: \n"
+                                + "1 - Inserir Nota \n"
+                                + "2 - Excluir Nota\n"
+                                + "3 - Relatório\n"
+                                + "4 - Cancelar"));
+                            }
                             switch(resp){
                                 case 1:
                                     fzd.inserirNotaSoja();
@@ -165,11 +225,20 @@ public class Fazenda {
                             
                                                         
                         case 2:
-                            resp = Integer.parseInt(JOptionPane.showInputDialog("Opções: \n"
+                            try{
+                                resp = Integer.parseInt(JOptionPane.showInputDialog("Opções: \n"
                                 + "1 - Inserir Nota \n"
                                 + "2 - Excluir Nota\n"
                                 + "3 - Relatório\n"
                                 + "4 - Cancelar"));
+                            }catch(NumberFormatException erro){
+                                JOptionPane.showMessageDialog(null, "Digite apenas números!");
+                                resp = Integer.parseInt(JOptionPane.showInputDialog("Opções: \n"
+                                + "1 - Inserir Nota \n"
+                                + "2 - Excluir Nota\n"
+                                + "3 - Relatório\n"
+                                + "4 - Cancelar"));
+                            }
                             switch(resp){
                                 case 1:
                                     fzd.inserirNotaTrigo();
@@ -187,11 +256,20 @@ public class Fazenda {
                             
                             
                         case 3: 
-                            resp = Integer.parseInt(JOptionPane.showInputDialog("Opções: \n"
+                            try{
+                                resp = Integer.parseInt(JOptionPane.showInputDialog("Opções: \n"
                                 + "1 - Inserir Nota \n"
                                 + "2 - Excluir Nota\n"
                                 + "3 - Relatório\n"
                                 + "4 - Cancelar"));
+                            }catch(NumberFormatException erro){
+                                JOptionPane.showMessageDialog(null, "Digite apenas números!");
+                                resp = Integer.parseInt(JOptionPane.showInputDialog("Opções: \n"
+                                + "1 - Inserir Nota \n"
+                                + "2 - Excluir Nota\n"
+                                + "3 - Relatório\n"
+                                + "4 - Cancelar"));
+                            }
                             switch(resp){
                                 case 1:
                                     fzd.inserirNotaMilho();
@@ -211,7 +289,11 @@ public class Fazenda {
                             break;
                     }
                     break;
-                                 
+                    
+                default :
+                    if(resp !=8 && error != true){
+                        JOptionPane.showMessageDialog(null,"Opção inválida!");
+                    }    
             }
             
         }while(resp !=8);
@@ -225,9 +307,16 @@ public class Fazenda {
         int resp;
         String nome, cpf, funcao;
         
-        resp = Integer.parseInt(JOptionPane.showInputDialog("Escolha o tipo de funcionário: \n"
+        try{
+            resp = Integer.parseInt(JOptionPane.showInputDialog("Escolha o tipo de funcionário: \n"
              + "1 - Operador\n"
              + "2 - Mecanico\n"));
+        }catch(NumberFormatException erro){
+            JOptionPane.showMessageDialog(null, "Digite apenas números!");
+            resp = Integer.parseInt(JOptionPane.showInputDialog("Escolha o tipo de funcionário: \n"
+             + "1 - Operador\n"
+             + "2 - Mecanico\n"));
+        }
         
         switch(resp){
             case 1:
@@ -322,8 +411,13 @@ public class Fazenda {
         JOptionPane.showMessageDialog(null, mensagem);
     }
     private void excluirTrator(){
-        //String codigo = JOptionPane.showInputDialog("Informe o código: ");
-        int codigo = Integer.parseInt(JOptionPane.showInputDialog("Código do trator: "));
+        int codigo;
+        try{
+            codigo = Integer.parseInt(JOptionPane.showInputDialog("Código do trator: "));
+        }catch(NumberFormatException erro){
+            JOptionPane.showMessageDialog(null, "Digite apenas números!");
+            codigo = Integer.parseInt(JOptionPane.showInputDialog("Código do trator: "));
+        }
         boolean removido = false;
         for (int i = 0; i < trator.size(); i++) {
             Trator a = trator.get(i);
@@ -381,7 +475,13 @@ public class Fazenda {
     }
     private void excluirColhedeira(){
         //String codigo = JOptionPane.showInputDialog("Informe o código: ");
-        int codigo = Integer.parseInt(JOptionPane.showInputDialog("Código da colhedeira: "));
+        int codigo;
+        try{
+            codigo = Integer.parseInt(JOptionPane.showInputDialog("Código da colhedeira: "));
+        }catch(NumberFormatException erro){
+            JOptionPane.showMessageDialog(null, "Digite apenas números!");
+            codigo = Integer.parseInt(JOptionPane.showInputDialog("Código da colhedeira: "));
+        }
         boolean removido = false;
         for (int i = 0; i < colhedeira.size(); i++) {
             Colhedeira a = colhedeira.get(i);
@@ -437,7 +537,13 @@ public class Fazenda {
         JOptionPane.showMessageDialog(null, mensagem);
     }
     private void excluirPlantadeira(){
-        int codigo = Integer.parseInt(JOptionPane.showInputDialog("Código da colhedeira: "));
+        int codigo;
+        try{
+            codigo = Integer.parseInt(JOptionPane.showInputDialog("Código da Plantadeira: "));
+        }catch(NumberFormatException erro){
+            JOptionPane.showMessageDialog(null, "Digite apenas números!");
+            codigo = Integer.parseInt(JOptionPane.showInputDialog("Código da Plantadeira: "));
+        }
         boolean removido = false;
         for (int i = 0; i < plantadeira.size(); i++) {
             Plantadeira a = plantadeira.get(i);
@@ -472,11 +578,11 @@ public class Fazenda {
             int numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota:"));
             sSoja.setNumNota(numNota);
         }try{
-            int qntdSacas = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de sacas:"));
+            double qntdSacas = qntdSacas = Double.parseDouble(JOptionPane.showInputDialog("Quantidade de sacas:"));
             sSoja.setQtdSacas(qntdSacas);
         }catch(NumberFormatException erro){
             JOptionPane.showMessageDialog(null, "ERRO!!!\nPreencha o campo *Quantida de sacas* somente com números!!");
-            int qntdSacas = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de sacas:"));
+            double qntdSacas = Double.parseDouble(JOptionPane.showInputDialog("Quantidade de sacas:"));
             sSoja.setQtdSacas(qntdSacas);
         }
         String nomeNota = JOptionPane.showInputDialog("Nome proprietário:");
@@ -500,7 +606,13 @@ public class Fazenda {
         JOptionPane.showMessageDialog(null, mensagem);
     }
     private void excluirNotaSoja(){
-        int numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota: "));
+        int numNota;
+        try{
+            numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota: "));
+        }catch(NumberFormatException erro){
+            JOptionPane.showMessageDialog(null, "Digite apenas números!");
+            numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota: "));
+        }
         boolean removido = false;
         for (int i = 0; i < siloSoja.size(); i++) {
             SiloSoja a = siloSoja.get(i);
@@ -528,11 +640,11 @@ public class Fazenda {
             int numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota:"));
             milho.setNumNota(numNota);
         }try{
-            int qntdSacas = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de sacas:"));
+            double qntdSacas = Double.parseDouble(JOptionPane.showInputDialog("Quantidade de sacas:"));
             milho.setQtdSacas(qntdSacas);
         }catch(NumberFormatException erro){
             JOptionPane.showMessageDialog(null, "ERRO!!!\nPreencha o campo *Quantida de sacas* somente com números!!");
-            int qntdSacas = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de sacas:"));
+            double qntdSacas = Double.parseDouble(JOptionPane.showInputDialog("Quantidade de sacas:"));
             milho.setQtdSacas(qntdSacas);
         }
         String nomeNota = JOptionPane.showInputDialog("Nome proprietário:");
@@ -555,8 +667,14 @@ public class Fazenda {
         }
         JOptionPane.showMessageDialog(null, mensagem);
     }
-    private void excluirNotaMilho(){
-        int numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota: "));
+    private void excluirNotaMilho(){        
+        int numNota;
+        try{
+            numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota: "));
+        }catch(NumberFormatException erro){
+            JOptionPane.showMessageDialog(null, "Digite apenas números!");
+            numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota: "));
+        }
         boolean removido = false;
         for (int i = 0; i < siloMilho.size(); i++) {
             SiloMilho a = siloMilho.get(i);
@@ -584,11 +702,11 @@ public class Fazenda {
             int numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota:"));
             trigo.setNumNota(numNota);
         }try{
-            int qntdSacas = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de sacas:"));
+            double qntdSacas = Double.parseDouble(JOptionPane.showInputDialog("Quantidade de sacas:"));
             trigo.setQtdSacas(qntdSacas);
         }catch(NumberFormatException erro){
             JOptionPane.showMessageDialog(null, "ERRO!!!\nPreencha o campo *Quantida de sacas* somente com números!!");
-            int qntdSacas = Integer.parseInt(JOptionPane.showInputDialog("Quantidade de sacas:"));
+            double qntdSacas = Double.parseDouble(JOptionPane.showInputDialog("Quantidade de sacas:"));
             trigo.setQtdSacas(qntdSacas);
         }
         String nomeNota = JOptionPane.showInputDialog("Nome proprietário:");
@@ -611,8 +729,14 @@ public class Fazenda {
         }
         JOptionPane.showMessageDialog(null, mensagem);
     }
-    private void excluirNotaTrigo(){
-        int numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota: "));
+    private void excluirNotaTrigo(){        
+        int numNota;
+        try{
+            numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota: "));
+        }catch(NumberFormatException erro){
+            JOptionPane.showMessageDialog(null, "Digite apenas números!");
+            numNota = Integer.parseInt(JOptionPane.showInputDialog("Número da nota: "));
+        }
         boolean removido = false;
         for (int i = 0; i < siloTrigo.size(); i++) {
             SiloTrigo a = siloTrigo.get(i);
